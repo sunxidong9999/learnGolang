@@ -81,6 +81,16 @@ func main() {
 	}
 	fmt.Println(p)
 
+	fmt.Println("find products with price > 10.1:")
+
+	var pp []model.Product
+	tx := dbconn.Find(&pp, "price > ?", 10.1)
+	if tx.Error != nil {
+		fmt.Println(tx.Error)
+		panic("find price > 10 failed")
+	}
+	fmt.Println(pp)
+
 	/*
 		tx := dbconn.Create(&p1)
 		if tx.Error != nil {
